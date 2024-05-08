@@ -30,7 +30,7 @@ def main():
 
 
 def generate_command(prompt, system_command="", system_explain=""):
-  loader = spinners.Spinner(spinners.CLOCK, "Asking ChatGPT...")
+  loader = spinners.Spinner(spinners.CLOCK, "Asking Groq...")
 
   loader.start()
   command = assistant.ask(prompt, system_command)
@@ -42,7 +42,7 @@ def generate_command(prompt, system_command="", system_explain=""):
   action = select(["✅ Run this command", "📝 Revise query", "❌ Cancel"]).lower()
 
   if action == "✅ run this command":
-      return command
+      return remove_decorations(command)
   elif action == "📝 revise query":
     revision_prompt = input("Revision: ")
     return generate_command(f"Change this command: {command}\nwith these edits: {revision_prompt}", system_command, system_explain)
@@ -53,5 +53,7 @@ def generate_command(prompt, system_command="", system_explain=""):
 def syntax_highlight(text, color="\33[94m"):
   return text.replace("{STARTH}", color).replace("{ENDH}", "\033[0m")
 
+def remove_decorations(text):
+  return text.replace("{STARTH}", "").replace("{ENDH}", "")
 
 main()

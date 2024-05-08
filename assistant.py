@@ -1,25 +1,19 @@
-import openai
 import dotenv
 import os
+from groq import Groq
 
 dirname = os.path.abspath(os.path.dirname(__file__))
 dotenv.load_dotenv(os.path.join(dirname, ".env"))
-api_key = os.getenv("API_KEY") or os.getenv("OPENAI_API_KEY")
-api_base = os.getenv("API_BASE")
+
+api_key = os.getenv("GROQ_API_KEY")
 model = os.getenv("MODEL")
 
-API_BASE = "https://api.pawan.krd/v1"  # https://api.openai.com/v1
-HEADERS = {
-	"Authorization": "Bearer " + api_key,
-	"Content-Type": "application/json"
-}
-
-openai.api_key = api_key
-openai.api_base = api_base
-
+client = Groq(
+	api_key = api_key
+)
 
 def ask(message, system = "", model=model):
-	completion = openai.ChatCompletion.create(
+	completion = client.chat.completions.create(
 		model=model,
 		messages=[
 			{
