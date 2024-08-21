@@ -30,7 +30,8 @@ def main():
 
 
 def generate_command(prompt, system_command="", system_explain=""):
-  loader = spinners.Spinner(spinners.CLOCK, "Asking Groq...")
+  model = os.getenv("MODEL")
+  loader = spinners.Spinner(spinners.CLOCK, f"Asking {model}...")
 
   loader.start()
   command = assistant.ask(prompt, system_command)

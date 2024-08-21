@@ -1,14 +1,14 @@
 import dotenv
 import os
-from groq import Groq
+from openai import OpenAI
 
 dirname = os.path.abspath(os.path.dirname(__file__))
 dotenv.load_dotenv(os.path.join(dirname, ".env"))
 
-api_key = os.getenv("GROQ_API_KEY")
+api_key = os.getenv("OPENAI_API_KEY")
 model = os.getenv("MODEL")
 
-client = Groq(
+client = OpenAI(
 	api_key = api_key
 )
 

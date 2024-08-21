@@ -13,8 +13,8 @@ A Github Copilot for CLI clone. Works on **any** operating system.
 2. `cd` to the project directory, and create a `.env` file
 3. Add this data to the `.env` file:
    ```env
-   GROQ_API_KEY = <YOUR_API_KEY>
-   MODEL = llama3-70B-8192  # Or choose any other model
+   OPENAI_API_KEY = <YOUR_API_KEY>
+   MODEL = gpt-4o-mini  # Or choose any other model
    ```
 4. Install the requirements `pip install -r requirements.txt`
 
